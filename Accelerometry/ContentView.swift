@@ -6,11 +6,44 @@
 //
 
 import SwiftUI
+import CoreMotion
+
 
 struct ContentView: View {
+    @ObservedObject var accelerometerController = AccelerometerController()
+    
     var body: some View {
-        Text("Hello, world!")
+        VStack {
+            Text("Accelerometry")
+                .font(.title)
+                .padding()
+            
+            HStack {
+                Text("\(accelerometerController.x)")
+                Spacer()
+                Text("\(accelerometerController.y)")
+                Spacer()
+                Text("\(accelerometerController.z)")
+            }
             .padding()
+            
+            Spacer()
+            
+            HStack {
+                Button(action: {self.accelerometerController.startUpdate()}) {
+                    Image(systemName: "play")
+                    Text("Start")
+                }
+                
+                Spacer()
+                
+                Button(action: {self.accelerometerController.endUpdate()}) {
+                    Text("End")
+                    Image(systemName: "pause")
+                }
+            }
+            .padding()
+        }
     }
 }
 

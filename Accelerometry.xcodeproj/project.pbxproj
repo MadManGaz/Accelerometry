@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,10 @@
 		9D4A11CF25E01CE400444219 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D4A11CE25E01CE400444219 /* Preview Assets.xcassets */; };
 		9D4A11DA25E01CE400444219 /* AccelerometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4A11D925E01CE400444219 /* AccelerometryTests.swift */; };
 		9D4A11E525E01CE400444219 /* AccelerometryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4A11E425E01CE400444219 /* AccelerometryUITests.swift */; };
+		9D4A120025E0215900444219 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 9D4A11FF25E0215900444219 /* Starscream */; };
+		9D4A120E25E0795800444219 /* AccelerometerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4A120D25E0795800444219 /* AccelerometerController.swift */; };
+		9D4A121C25E0881100444219 /* AccelerometerWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4A121B25E0881100444219 /* AccelerometerWebSocket.swift */; };
+		9DAB1A1B25E0AA9F009F3161 /* CMMotionManagerSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB1A1A25E0AA9F009F3161 /* CMMotionManagerSingleton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,9 @@
 		9D4A11E025E01CE400444219 /* AccelerometryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccelerometryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D4A11E425E01CE400444219 /* AccelerometryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometryUITests.swift; sourceTree = "<group>"; };
 		9D4A11E625E01CE400444219 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D4A120D25E0795800444219 /* AccelerometerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometerController.swift; sourceTree = "<group>"; };
+		9D4A121B25E0881100444219 /* AccelerometerWebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometerWebSocket.swift; sourceTree = "<group>"; };
+		9DAB1A1A25E0AA9F009F3161 /* CMMotionManagerSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMMotionManagerSingleton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D4A120025E0215900444219 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +103,7 @@
 		9D4A11C625E01CE300444219 /* Accelerometry */ = {
 			isa = PBXGroup;
 			children = (
+				9D4A11F525E01DCE00444219 /* Accelerometer */,
 				9D4A11C725E01CE300444219 /* AccelerometryApp.swift */,
 				9D4A11C925E01CE300444219 /* ContentView.swift */,
 				9D4A11CB25E01CE400444219 /* Assets.xcassets */,
@@ -130,6 +139,16 @@
 			path = AccelerometryUITests;
 			sourceTree = "<group>";
 		};
+		9D4A11F525E01DCE00444219 /* Accelerometer */ = {
+			isa = PBXGroup;
+			children = (
+				9D4A120D25E0795800444219 /* AccelerometerController.swift */,
+				9D4A121B25E0881100444219 /* AccelerometerWebSocket.swift */,
+				9DAB1A1A25E0AA9F009F3161 /* CMMotionManagerSingleton.swift */,
+			);
+			path = Accelerometer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +165,9 @@
 			dependencies = (
 			);
 			name = Accelerometry;
+			packageProductDependencies = (
+				9D4A11FF25E0215900444219 /* Starscream */,
+			);
 			productName = Accelerometry;
 			productReference = 9D4A11C425E01CE300444219 /* Accelerometry.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +239,9 @@
 				Base,
 			);
 			mainGroup = 9D4A11BB25E01CE300444219;
+			packageReferences = (
+				9D4A11FE25E0215900444219 /* XCRemoteSwiftPackageReference "Starscream" */,
+			);
 			productRefGroup = 9D4A11C525E01CE300444219 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,6 +284,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D4A120E25E0795800444219 /* AccelerometerController.swift in Sources */,
+				9DAB1A1B25E0AA9F009F3161 /* CMMotionManagerSingleton.swift in Sources */,
+				9D4A121C25E0881100444219 /* AccelerometerWebSocket.swift in Sources */,
 				9D4A11CA25E01CE300444219 /* ContentView.swift in Sources */,
 				9D4A11C825E01CE300444219 /* AccelerometryApp.swift in Sources */,
 			);
@@ -580,6 +608,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9D4A11FE25E0215900444219 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9D4A11FF25E0215900444219 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D4A11FE25E0215900444219 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9D4A11BC25E01CE300444219 /* Project object */;
 }
