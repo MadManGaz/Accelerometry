@@ -1,8 +1,8 @@
 # Accelerometry 📈
 
-![App Screenshot with Frame](https://github.com/madmangaz/accelerometry/blob/main/screenshots/mainScreen.png?raw=true)
-
 A small app for iOS to send raw accelerometry data to a server over WebSocket.
+
+![App Screenshot with Frame](https://github.com/madmangaz/accelerometry/blob/main/screenshots/mainScreen.png?raw=true)
 
 ## Usage
 
