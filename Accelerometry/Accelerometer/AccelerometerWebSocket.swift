@@ -7,13 +7,11 @@
 
 import Foundation
 import Starscream
-import Combine
 import os
 
 class AccelerometerWebSocket: WebSocketDelegate {
     let logger = Logger()
     private var socket: WebSocket!
-//    let server = WebSocketServer()
     
     var isConnected = false
     
@@ -21,20 +19,25 @@ class AccelerometerWebSocket: WebSocketDelegate {
         let request = URLRequest(url: url)
         socket = WebSocket(request: request)
         socket.delegate = self
-        socket.connect()
+    }
+    
+    
+    func connect() {
+        isConnected
+            ? logger.notice("WebSocket already connected.")
+            : socket.connect()
+    }
+    
+    func disconnect() {
+        isConnected
+            ? socket.disconnect()
+            : logger.notice("WebSocket already disconnected.")
+        
+        logger.info("WebSocket disconnected")
     }
     
     func write(_ string: String) {
         self.socket.write(string: string)
-    }
-    
-    func writeSinkToServer(with publisher: AnyPublisher<(Double, Double, Double), Never>) {
-        _ = publisher.sink(receiveValue: { coordinates in
-            let (x, y, z) = coordinates
-            let coordinateString = "Wrote \(x),\(y),\(z)"
-            self.socket.write(string: coordinateString)
-            self.logger.debug("\(coordinateString)")
-        })
     }
     
     func didReceive(event: WebSocketEvent, client: WebSocket) {
@@ -45,12 +48,8 @@ class AccelerometerWebSocket: WebSocketDelegate {
                 case .disconnected(let reason, let code):
                     isConnected = false
                     print("websocket is disconnected: \(reason) with code: \(code)")
-                case .text(let string):
-                    if string == "disconnect" {
-                        socket.disconnect()
-                    } else {
-                        print("ack")
-                    }
+                case .text(_):
+                    break
                 case .binary(let data):
                     print("Received data: \(data.count)")
                 case .ping(_):
