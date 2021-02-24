@@ -8,17 +8,23 @@
 import SwiftUI
 import CoreMotion
 
-
 struct ContentView: View {
     @ObservedObject private var accelerometerController = AccelerometerController()
-    @State private var address: String = ""
+    
+#if DEBUG
+    @State var address = "192.168.1.119:8765"
+#else
+    @State var address = ""
+#endif
+    
+    @State private var isConnected = false
     
     var body: some View {
         VStack {
             Text("Accelerometry 📈")
                 .font(.title)
                 .padding()
-              
+            
             Coordinates(x: accelerometerController.x,
                         y: accelerometerController.y,
                         z: accelerometerController.z)
@@ -29,20 +35,28 @@ struct ContentView: View {
                 Text("Enter IP address and port")
                     .font(.caption)
                 TextField("localhost:8765", text: $address)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
                     .font(.system(size: 22, design: .monospaced))
             }
             .padding()
             
             Spacer()
             
-            Button("Print to screen") {
-                print("This does something")
+            if isConnected {
+                ModelView(quaternion: CMQuaternion())
+                    .transition(.slide)
+                    .animation(.easeInOut(duration: 1))
             }
+            
+            Spacer()
             
             // Passing in method references is probably a bad idea.
             // TODO: Find approach besides method references.
-            StartStopButtons(start: accelerometerController.startUpdate,
-                             end: accelerometerController.endUpdate)
+            StartStopButtons(accelerometerController: accelerometerController,
+                             address: $address,
+                             isConnected: $isConnected)
+                .padding() 
         }
     }
 }
@@ -50,8 +64,8 @@ struct ContentView: View {
 struct CardBackground: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 15, style: .continuous)
-            .fill(Color(UIColor.systemBackground))
-            .shadow(color: Color(UIColor.systemFill), radius: 5, x: 0.0, y: 0.0)
+            .fill(Color(UIColor.systemRed))
+            .shadow(color: Color.red.opacity(0.6), radius: 5, x: 0.0, y: 0.0)
     }
 }
 
@@ -62,16 +76,29 @@ struct Coordinate: View {
     
     var body: some View {
         ZStack {
-            CardBackground()
-            
             VStack {
-                Text(label)
-                    .font(.headline)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25, style: .continuous)
+                        .fill(Color.white)
+                        .frame(width: 40, height: 30)
+                    
+                    Text(label)
+                        .foregroundColor(.black)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                }
                 Divider()
-                Text("\(singleCoord)")
-                    .font(.system(size: 14, design: .monospaced))
-                    .frame(width: 100, height: 25)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25, style: .continuous)
+                        .fill(Color.white)
+                        .frame(height: 30)
+                    
+                    Text("\(singleCoord)")
+                        .foregroundColor(.black)
+                        .font(.system(size: 14, design: .monospaced))
+                }
             }
+            .padding()
         }
     }
 }
@@ -83,43 +110,53 @@ struct Coordinates: View {
     let z: Double
     
     var body: some View {
-        HStack {
-            Coordinate(label: "x", singleCoord: x)
-            Spacer()
-            Coordinate(label: "y", singleCoord: y)
-            Spacer()
-            Coordinate(label: "z", singleCoord: z)
+        ZStack {
+            CardBackground()
+            
+            HStack {
+                Coordinate(label: "x", singleCoord: x)
+                Coordinate(label: "y", singleCoord: y)
+                Coordinate(label: "z", singleCoord: z)
+            }
         }
-        .padding(20)
-        .multilineTextAlignment(.center)
+        .padding()
         .frame(height: 120)
     }
 }
 
+/// Buttons that execute passed in functions. Intended for pause/play functionality
 struct StartStopButtons: View {
-    let start: () -> Void
-    let end: () -> Void
+    @ObservedObject var accelerometerController: AccelerometerController
+    @Binding var address: String
+    @Binding var isConnected: Bool
     
     var body: some View {
         HStack {
-            Button(action: {start()}) {
+            // TODO: Add validation for URL instead of force unwrapping
+            Button(action: {
+                self.accelerometerController.startUpdate(
+                    url: URL(string: "ws://\(address)")!)
+                isConnected = true
+            }) {
                 Image(systemName: "play")
                 Text("Start")
             }
             
             Spacer()
             
-            Button(action: {end()}) {
+            Button(action: {
+                self.accelerometerController.endUpdate()
+                isConnected = false
+            }) {
                 Text("End")
                 Image(systemName: "pause")
             }
         }
-        .padding()
     }
     
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
-            ContentView()
+            ContentView().previewDevice("iPhone 12 Pro Max")
         }
     }
 }

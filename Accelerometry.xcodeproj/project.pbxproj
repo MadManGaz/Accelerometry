@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D09C6CE25E44545006F8140 /* ModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D09C6CD25E44545006F8140 /* ModelViewController.swift */; };
+		9D2BB2E725E4036A0071BD7B /* SceneKit Asset Catalog.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D2BB2E625E4036A0071BD7B /* SceneKit Asset Catalog.scnassets */; };
 		9D4A11C825E01CE300444219 /* AccelerometryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4A11C725E01CE300444219 /* AccelerometryApp.swift */; };
 		9D4A11CA25E01CE300444219 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4A11C925E01CE300444219 /* ContentView.swift */; };
 		9D4A11CC25E01CE400444219 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D4A11CB25E01CE400444219 /* Assets.xcassets */; };
@@ -16,7 +18,9 @@
 		9D4A120025E0215900444219 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 9D4A11FF25E0215900444219 /* Starscream */; };
 		9D4A120E25E0795800444219 /* AccelerometerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4A120D25E0795800444219 /* AccelerometerController.swift */; };
 		9D4A121C25E0881100444219 /* AccelerometerWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4A121B25E0881100444219 /* AccelerometerWebSocket.swift */; };
+		9D6E1A6425E4200700CBDB0C /* Robot.scn in Resources */ = {isa = PBXBuildFile; fileRef = 9D6E1A6325E4200700CBDB0C /* Robot.scn */; };
 		9DAB1A1B25E0AA9F009F3161 /* CMMotionManagerSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAB1A1A25E0AA9F009F3161 /* CMMotionManagerSingleton.swift */; };
+		9DD4F0A925E3F98E0018D218 /* ModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD4F0A825E3F98E0018D218 /* ModelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D09C6CD25E44545006F8140 /* ModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewController.swift; sourceTree = "<group>"; };
+		9D2BB2E625E4036A0071BD7B /* SceneKit Asset Catalog.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = "SceneKit Asset Catalog.scnassets"; sourceTree = "<group>"; };
 		9D4A11C425E01CE300444219 /* Accelerometry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Accelerometry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D4A11C725E01CE300444219 /* AccelerometryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometryApp.swift; sourceTree = "<group>"; };
 		9D4A11C925E01CE300444219 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,7 +57,9 @@
 		9D4A11E625E01CE400444219 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D4A120D25E0795800444219 /* AccelerometerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometerController.swift; sourceTree = "<group>"; };
 		9D4A121B25E0881100444219 /* AccelerometerWebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccelerometerWebSocket.swift; sourceTree = "<group>"; };
+		9D6E1A6325E4200700CBDB0C /* Robot.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Robot.scn; sourceTree = "<group>"; };
 		9DAB1A1A25E0AA9F009F3161 /* CMMotionManagerSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMMotionManagerSingleton.swift; sourceTree = "<group>"; };
+		9DD4F0A825E3F98E0018D218 /* ModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D09C6CC25E44524006F8140 /* 3DViews */ = {
+			isa = PBXGroup;
+			children = (
+				9DD4F0A825E3F98E0018D218 /* ModelView.swift */,
+				9D09C6CD25E44545006F8140 /* ModelViewController.swift */,
+			);
+			path = 3DViews;
+			sourceTree = "<group>";
+		};
+		9D2BB2EB25E404930071BD7B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				9D6E1A6325E4200700CBDB0C /* Robot.scn */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		9D4A11BB25E01CE300444219 = {
 			isa = PBXGroup;
 			children = (
@@ -103,12 +128,15 @@
 		9D4A11C625E01CE300444219 /* Accelerometry */ = {
 			isa = PBXGroup;
 			children = (
+				9D09C6CC25E44524006F8140 /* 3DViews */,
+				9D2BB2EB25E404930071BD7B /* Scenes */,
 				9D4A11F525E01DCE00444219 /* Accelerometer */,
 				9D4A11C725E01CE300444219 /* AccelerometryApp.swift */,
 				9D4A11C925E01CE300444219 /* ContentView.swift */,
-				9D4A11CB25E01CE400444219 /* Assets.xcassets */,
 				9D4A11D025E01CE400444219 /* Info.plist */,
 				9D4A11CD25E01CE400444219 /* Preview Content */,
+				9D4A11CB25E01CE400444219 /* Assets.xcassets */,
+				9D2BB2E625E4036A0071BD7B /* SceneKit Asset Catalog.scnassets */,
 			);
 			path = Accelerometry;
 			sourceTree = "<group>";
@@ -258,6 +286,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D2BB2E725E4036A0071BD7B /* SceneKit Asset Catalog.scnassets in Resources */,
+				9D6E1A6425E4200700CBDB0C /* Robot.scn in Resources */,
 				9D4A11CF25E01CE400444219 /* Preview Assets.xcassets in Resources */,
 				9D4A11CC25E01CE400444219 /* Assets.xcassets in Resources */,
 			);
@@ -284,10 +314,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DD4F0A925E3F98E0018D218 /* ModelView.swift in Sources */,
 				9D4A120E25E0795800444219 /* AccelerometerController.swift in Sources */,
 				9DAB1A1B25E0AA9F009F3161 /* CMMotionManagerSingleton.swift in Sources */,
 				9D4A121C25E0881100444219 /* AccelerometerWebSocket.swift in Sources */,
 				9D4A11CA25E01CE300444219 /* ContentView.swift in Sources */,
+				9D09C6CE25E44545006F8140 /* ModelViewController.swift in Sources */,
 				9D4A11C825E01CE300444219 /* AccelerometryApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -430,7 +462,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
