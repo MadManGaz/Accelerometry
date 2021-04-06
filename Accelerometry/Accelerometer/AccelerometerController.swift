@@ -19,13 +19,14 @@ class AccelerometerController: ObservableObject {
     @Published private(set) var x = 0.0
     @Published private(set) var y = 0.0
     @Published private(set) var z = 0.0
+    @Published private(set) var timestamp = 0.0
     @Published private(set) var rotationMatrix = CMRotationMatrix()
     
-    private(set) var coordinates = (x: 0.0, y: 0.0, z: 0.0) {
+    private(set) var coordinates = (timestamp: 0.0, x: 0.0, y: 0.0, z: 0.0) {
         didSet {
             if webSocket.isConnected {
-                let (x, y, z) = coordinates
-                webSocket.write("\(x),\(y),\(z)")
+                let (timestamp, x, y, z) = coordinates
+                webSocket.write("\(timestamp),\(x),\(y),\(z)")
             }
         }
     }
@@ -50,10 +51,11 @@ class AccelerometerController: ObservableObject {
                 
                 if let accelData = accelerometerData {
                     DispatchQueue.main.async {
+                        self.timestamp = accelData.timestamp
                         self.x = accelData.acceleration.x
                         self.y = accelData.acceleration.y
                         self.z = accelData.acceleration.z
-                        self.coordinates = (self.x, self.y, self.z)
+                        self.coordinates = (self.timestamp, self.x, self.y, self.z)
                     }
                 }
             }
